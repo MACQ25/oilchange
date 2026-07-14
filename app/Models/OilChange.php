@@ -13,7 +13,14 @@ class OilChange extends Model
     ];
 
     protected $casts = [
-        'check_date' => 'date',
         'previous_oil_change_date' => 'date'
     ];
+
+    public function needsOilChange(): bool
+    {
+        $milesDiff = $this -> current_odometer - $this-> previous_odometer;
+        $timeDiff = $this -> previous_oil_change_date -> diffInMonths(now(), false);
+
+        return $milesDiff >= 5000 || $timeDiff >= 6;
+    }
 }

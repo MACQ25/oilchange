@@ -14,7 +14,7 @@ class StoreOilChangeCheckRequest extends FormRequest {
     public function rules(): array {
         return [
             'current_odometer' => 'required|integer|min:0',
-            'previous_oil_change_date' => 'required|date',
+            'previous_oil_change_date' => 'required|date|before_or_equal:today',
             'previous_odometer' => 'required|integer|min:0|lte:current_odometer',
         ];
     }

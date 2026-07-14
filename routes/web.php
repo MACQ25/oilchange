@@ -3,13 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OilChecksController;
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+
 
 Route::get('/', function () {
     return view('form');
-});
+})->name('home');
 
 Route::post('/check', [OilChecksController::class, 'store'])->name('oil-changes.store');
 
